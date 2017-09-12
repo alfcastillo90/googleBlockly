@@ -136,26 +136,54 @@
   </xml>
 
   <script>
+
+    'use strict';
+    goog.provide('Blockly.Constants.Test');
+    Blockly.Constants.Test.CARGAR_MUTATOR_MIXIN = {
+      mutationToDom : function(){
+        var container = document.getElementById("mutation");
+        return container;
+      },
+      domToMutation : function(xmlElement){
+
+      },
+      decompose : function(workspace){
+
+      },
+      compose : function(containerBlock){
+
+      },
+      saveConnections : function(containerBlock){
+        
+      },
+      updateShape_ : function(){
+
+      }
+    };
+    Blockly.Extensions.registerMutator("cargar",CARGAR_MUTATOR_MIXIN);
     var Test = {};
     Test.workspace = null;
     Test.oldFormula_ = null;
     Test.options_ = {
-    width: 400, height: 400,
-    chartArea: {left: '10%', width: '85%', height: '85%'}
+      width: 400, height: 400,
+      chartArea: {left: '10%', width: '85%', height: '85%'}
     };
     Test.resize = function() {
-    var width = Math.max(window.innerWidth - 440, 250);
-    document.getElementById('blocklyDiv').style.width = width + 'px';
-    Blockly.svgResize(Test.workspace);
+      var width = Math.max(window.innerWidth - 440, 250);
+      document.getElementById('blocklyDiv').style.width = width + 'px';
+      Blockly.svgResize(Test.workspace);
     };
     Test.init = function() {
-    Test.workspace = Blockly.inject('blocklyDiv',
-        {collapse: false,
-        disable: false,
-        media: 'media/',
-        toolbox: document.getElementById('toolbox')});
-    Test.workspace.clearUndo();
-    Test.resize();
+      Test.workspace = Blockly.inject('blocklyDiv',
+        {
+          collapse: false,
+          disable: false,
+          media: 'media/',
+          toolbox: document.getElementById('toolbox')
+        }
+      );
+      Test.workspace.clearUndo();
+      Test.resize();
     };
 
     window.addEventListener('load', Test.init);
